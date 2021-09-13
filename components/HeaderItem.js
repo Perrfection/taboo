@@ -1,10 +1,9 @@
 import React from "react";
 
-function HeaderItem({title, Description}) {
-    return(
-        <div>
-        </div>
-    )
+function HeaderItem({ title, onClick }) {
+  return <div >
+    <button onClick={onClick}> {title} </button>
+  </div>;
 }
 
-export default HeaderItem
+export default HeaderItem;
