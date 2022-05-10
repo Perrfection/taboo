@@ -1,15 +1,13 @@
 import Head from "next/head";
-import Jumbotron from "../../components/Jumbotron";
-import HeaderM from "../../components/HeaderM";
-import Feed from "../../components/Feed";
-import {useSelector} from "react-redux"
-import {selectUser} from "../features/userSlice";
-import Login from "../../components/Login"
+import { useSelector } from "react-redux";
+import { selectUser } from "../features/userSlice";
+import Login from "../components/Login";
 import React from "react";
+import Home from "../components/Home";
 
-function Home() {
+function Index() {
+  const user = useSelector(selectUser);
 
-    const user = useSelector(selectUser);
 
   return (
     <div>
@@ -18,18 +16,12 @@ function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-    {! user ? (
-        <Login/>
-        ) : (
-        <main>
-            <HeaderM />
-            <Jumbotron />
-            <Feed />
-        </main>
-
-    )}
-</div>
-
+      {!user ?
+          <Login />
+          :
+          <Home />
+      }
+    </div>
   );
 }
-export default Home;
+export default Index;
