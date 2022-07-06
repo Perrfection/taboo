@@ -71,7 +71,7 @@ function Login() {
   return (
     <div className="form1">
       <div className="form2">
-        <Image
+        <img
           src="/tabooLogo.png"
           alt="Taboo"
           width={300}

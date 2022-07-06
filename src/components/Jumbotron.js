@@ -9,17 +9,20 @@ function HeaderP() {
   const [searchInput, setSearchInput] = useState([]);
   const [posts, setPosts] = useState([]);
 
+  console.log(searchInput.toString())
   useEffect(() => {
-    db.collection("posts")
-      .orderBy("timestamp", "desc")
-      .onSnapshot((snapshot) =>
-        setPosts(
-          snapshot.docs.map((doc) => ({
-            id: doc.id,
-            data: doc.data(),
-          }))
-        )
-      );
+
+      db.collection("posts")
+          .where("title", "array-contains-any", [searchInput.toString()])
+        .orderBy("title")
+        .onSnapshot((snapshot) =>
+          setPosts(
+            snapshot.docs.map((doc) => ({
+              id: doc.id,
+              data: doc.data(),
+            }))
+          )
+        );
   }, []);
 
   return (

@@ -3,10 +3,8 @@ import Jumbotron from "./Jumbotron";
 import PostForm from "./PostForm";
 import Feed from "./Feed";
 import React, { useState } from "react";
-import {connect} from "react-redux";
 
 function Home() {
-
   const [newPost, setNewPost] = useState(false);
 
   const showPost = (e) => {
@@ -14,17 +12,23 @@ function Home() {
     setNewPost(!newPost);
   };
 
-  return !newPost ? (
+  return (
     <div>
       <HeaderM />
       <Jumbotron />
-      <button className="b2" onClick={showPost}>New Post</button>
-      <Feed />
+      {!newPost ? (
+        <div>
+          <button className="b2" onClick={showPost}>
+            New Post
+          </button>
+          <Feed />
+        </div>
+      ) : (
+        <form className="form">
+          <PostForm className="b1" />
+        </form>
+      )}
     </div>
-  ) : (
-      <form className="form">
-          <PostForm className="b1"/>
-      </form>
   );
 }
-export default (Home);
+export default Home;
